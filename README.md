@@ -1,1 +1,16 @@
 # idyllebeaute.fr
+
+
+Cree un fichier .env et ajouter: 
+
+DB_HOST=
+DB_USER=
+DB_PASS=
+DB_DATABASE=
+API_INSULT_PW=
+API_INSULT_USER=
+EMAIL_NODEMAILER=
+PASSWORD_NODEMAILER=
+API_KEY_MAILGUN=
+DOMAIN_MAIL=
+
