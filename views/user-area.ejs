@@ -1,0 +1,166 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar')-%>
+
+<main class="user-area">
+
+  <div class="container">
+    <!--Card user-->
+    <% if (typeof user != 'undefined') { %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-user-area">
+            <img src="/images/logo/compte-utilisateur-1.png" alt="">
+            <div class="content-card-user">
+              <h1><%= user.firstname%> <%= user.lastname%></h1>
+              <h2><%= user.age %> ans</h2>
+              <ul>
+                <li><%= user.email %></li>
+                <li><%= user.phone %></li>
+              </ul>
+              <div class="btn-card-user-area">
+                <a href="/user-area/edit-profil/<%= user.id %>">Modifier</a>
+              <form method="POST" action="/user-area/delete/<%= user.id %>?_method=DELETE">
+                <button type="submit">Supprimer</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  
+  
+    <!---Message Flash edit profil-->
+    <% if(successEdit.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= successEdit %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% } %>
+    
+    <!--Comment register-->
+    <div class="container list-comment-user">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title">Liste des commentaires</h1>
+        </div>
+      </div>
+      <div class="row">
+  
+        <div class="col-md-12">
+          <% if(success.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%= success %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% } %>
+        </div>
+  
+  
+        <div class="col-md-12">
+          <table class="table">
+            <thead class="thead">
+              <tr>
+                <td class="title-thead">Commentaires</td>
+                <td class="title-thead">Supprimer</td>
+              </tr>
+            </thead>
+            <tbody>
+      
+            <% if (typeof comments != 'undefined') { %> 
+            <% comments.forEach(function(entry) {%>
+              <tr>
+                <td><%= entry.commentary%></td>
+                <form method="POST" action="/user-area/delete/comment/<%=entry.id%>?_method=DELETE">
+                    <td><button type="submit" class="btn">Supprimer</button></td>
+                </form>
+              </tr>
+            <%});%>
+            <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container create-comment">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title">Cree un commentaire</h1>
+        </div>
+      </div>
+      <form action="/user-area/<%= user.id %>" method="POST">
+        <!---Message Flash-->
+        <% if(error.length > 0) { %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= error %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <% } %>
+    
+    
+          <!--Create comment-->
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Laisser un commentaire</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Décrivez en détails votre activité" name="comment"></textarea>
+          </div>
+        <button type="submit">Ajoutez</button>
+    </form>
+    </div>
+    
+    <div class="button-modal">
+      <button type="button" data-toggle="modal" data-target="#exampleModal">Afficher conversation avec Pauline</button>
+    </div>
+
+  
+  
+    
+  <!---MODAL CONVERSATION-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+  
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLabel">Pauline</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form class="form-modal" action="/user-area/send-message/<%= userSession.userID %>" method="POST">
+          <% allMessage.forEach(function(entry) {%>
+          <!-- <div class="modal-body"> -->
+            <% if (entry.send_id === 10) { %>
+              <div class="message-send">
+                <p><%= entry.send_firstname%> <%= entry.send_lastname%> : <%= entry.content%></p>
+              </div>
+            <% } else {  %>
+              <div class="message-receive">
+                <p><%= entry.send_firstname%> <%= entry.send_lastname%> : <%= entry.content%></p>
+              </div>
+            <% } %>
+          <!-- </div> -->
+          <%});%>
+          <div class="input-group mb-3" style="padding: 10px;">
+            <input type="text" class="form-control" placeholder="Envoyer un message" aria-label="Recipient's username" aria-describedby="button-addon2" name="content">
+            <div class="input-group-append">
+              <button class="btn" type="submit" id="button-addon2" style="background: rgba(0, 0, 255, 0.7); color: #fff">Envoyer</button>
+            </div>
+          </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('./partials/footer-idylle')-%>
+<%- include('./partials/footer')-%>

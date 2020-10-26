@@ -1,0 +1,55 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 title-form-create-activity">
+                <h1>Modifiez : <%= activity.name %></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-create-activity">
+                <form method="POST" action="/admin/edit/activity/<%= activity.id %>?_method=PUT" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nom de la prestation</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le nom de la prestation" value="<%= activity.name %>" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selectionnez la categorie</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                        <% categories.forEach(function(category){ %>
+                          <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }); %>
+                        </select>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ajoutez un prix a la prestation en €</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le prix de la prestation" value="<%= activity.price %>" name="price">
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ajoutez une durée a la prestation en min</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez la durée de la prestation" value="<%= activity.time %>" name="time">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Description de la prestation</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Décrivez en détails votre activité" name="text"><%= activity.text %></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlFile1">Ajoutez une image</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajoutez</button>
+                </form>                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer')-%>

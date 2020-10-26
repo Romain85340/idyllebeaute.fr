@@ -1,0 +1,31 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar')-%>
+
+
+<!--Card activity-->
+<main class="one-activity">
+    <div class="card-one-activity">
+        <% activity.forEach(function(entry) {%>
+        <h1><%= entry.activity_name%></h1>
+        <div class="content-activity">
+        <div class="content-activity-img">
+          <img src="<%= entry.activity_image%>" alt="">
+        </div>
+        <div class="text-activity">
+            <h2><%= entry.category_name%></h2>
+            <p><%= entry.activity_text%></p>
+            <div class="info-contact">
+              <ul class="">
+                <li class="price-activity"><%= entry.activity_price%> €</li>
+                <li class="time-activity"><%= entry.activity_time%> min</li>
+              </ul>
+              <a href="/#contact">Contactez moi</a>
+            </div>
+          </div>
+        </div>
+        <%});%>
+      </div>
+    </div>
+</main>
+
+<%- include('./partials/footer')-%>

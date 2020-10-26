@@ -1,0 +1,140 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar')-%>
+
+<main class="main-index">
+
+    <!--Eye catcher-->
+    <section class="eyecatcherIndex">
+      <div class="focus-eyecatcher">
+        <div class="text-eyecatcher">
+          <h1>Votre salon d'esthetique</h1>
+          <p>Du soin au besoin, la beauté a portée de main</p>
+        </div>
+        <div class="button-eyecatcher">
+          <a href="/#activity">Voir la liste des prestations</a>
+          <a href="/#contact">Comment me contactez ?</a>
+      </div>
+      </div>
+    </section>
+
+    <!--Presentation-->
+    <section class="presentationIndex">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 titrePresentationIndex">
+            <h1>Idylle Beauté</h1>
+          </div>
+        </div>
+        <div class="row contentPresentationIndex">
+          <div class="col-md-6">
+            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel" style="border-radius: 50%; overflow: hidden; margin: 0 auto;">
+              <div class="carousel-inner">
+                <div class="carousel-item active" style="display: flex;">
+                    <img src="./images/caroussel/img-carousel.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="./images/caroussel/imgcarousel2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="./images/caroussel/imgcarousel3.jpg" class="d-block w-100" alt="...">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 text-presentationIndex" data-aos="zoom-in">
+            <p><p>Bienvenue à Idylle Beauté, Pauline vous acceuille dans son institut situé au centre de l'Aiguillon sur vie, ouvert du Mardi au Samedi. Jeune, dynamique, et passionnée par son métier, elle se fera une joie de vous apportez du bien être dans une ambiance chaleureuse et relaxante grace à ses soins visage, corps, épilation, onglerie ect.<br><span>Tentez l'experience !</span></p></p>
+          </div>
+        </div>
+      </div>          
+    </section>
+
+    <!--Activities-->
+    <section class="container activitiesIndex" id="activity">
+      <div class="row">
+        <div class="col-md-12 titleActivityIndex">
+          <h1>Les types de prestation</h1>
+        </div>
+      </div>
+      
+      
+      <!-- Swiper -->
+<div class="swiper-container">
+<div class="swiper-wrapper">
+
+<% categories.forEach(function(entry) {%>
+  <div class="swiper-slide">
+    <div class="card-activity-index">
+      <div class="card-image-activity-index">
+        <img src="<%= entry.image%>" alt="">
+      </div>
+      <div class="card-text-activity-index">
+        <h1><%= entry.name%></h1>
+      </div>
+      <div class="card-btn-activity-index">
+        <a href="/activities/list/<%= entry.id%>">Plus d'infos</a>
+      </div>
+    </div>
+  </div>
+<%});%>
+
+</div>
+<!-- Add Pagination -->
+<div class="swiper-pagination"></div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+<!--Commentaire client-->
+    <section class="container clientIndex">
+      <div class="row">
+        <div class="col-md-12 title-clients-index">
+          <h1>Les avis clients</h1>
+        </div>
+        <div class="row">
+           
+        <% commentaries.forEach(function(entry) {%>
+          <div class="col-md-4 judgement-index" data-aos="fade-up-right">
+            <div class="judgement-index">
+              <h1><%= entry.firstname%> <%= entry.lastname%></h1>
+              <p><i class="fas fa-quote-left"></i><%= entry.commentary%><i class="fas fa-quote-right"></i></p>
+            </div>
+          </div>
+        <%});%>
+                        
+        </div>
+      </div>
+    </section>
+
+
+    <!--Contact-->
+    <section class="contact" id="contact">
+      <div class="renseignement">
+          <h1>Ou me trouver ?</h1>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2737.7644372986497!2d-1.829305484069136!3d46.670911679133745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4804508dd15eccf9%3A0xbbe18d5d48b8464!2s1%20Rue%20Georges%20Clemenceau%2C%2085220%20L&#39;Aiguillon-sur-Vie!5e0!3m2!1sfr!2sfr!4v1591703410246!5m2!1sfr!2sfr" width="450" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          <ul class="adresse">
+              <li>21 ter rue Georges Clemenceau, 85002, Aiguillon sur vie.</li>
+              <li>idyllebeaute85@gmail.com / <span>Tel: 06-49-62-36-16</span></li>
+          </ul>
+          <h2>Heures d'ouverture</h2>
+          <ul class="horaire">
+              <li>Mardi: 9h - 12h / 14h - 18h30</li>
+              <li>Mercredi: 9h - 12h / 14h - 18h30</li>
+              <li>Jeudi: 9h - 12h / 14h - 17h</li>
+              <li>Vendredi: 9h - 12h / 14h - 18h30</li>
+              <li>Samedi: 9h - 15h</li>
+              <li>Lundi - Dimanche: Fermé</li>
+          </ul>
+      </div>
+  </section>
+
+  </main>
+
+<%- include('./partials/footer-idylle')-%>
+<%- include('./partials/footer')-%>

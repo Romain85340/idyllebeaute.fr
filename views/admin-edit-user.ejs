@@ -1,0 +1,141 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Modifier le profil de <%= user.firstname %></h1>
+            </div>
+            <div class="col-md-12">
+                <form action="/admin/edit/user/<%= user.id %>?_method=PUT" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Prénom</label>
+                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le nom de la prestation" value="<%= user.firstname %>" name="firstname">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nom</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le nom de la prestation" value="<%= user.lastname %>" name="lastname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le nom de la prestation" value="<%= user.email %>" name="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Age</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" value="<%= user.age %> " name="age">
+                                        <option value="">Selectionner</option>
+                                          <option value="14">14 ans</option>
+                                          <option value="15">15 ans</option>
+                                          <option value="16">16 ans</option>
+                                          <option value="17">17 ans</option>
+                                          <option value="18">18 ans</option>
+                                          <option value="19">19 ans</option>
+                                          <option value="20">20 ans</option>
+                                          <option value="21">21 ans</option>
+                                          <option value="22">22 ans</option>
+                                          <option value="23">23 ans</option>
+                                          <option value="24">24 ans</option>
+                                          <option value="25">25 ans</option>
+                                          <option value="26">26 ans</option>
+                                          <option value="27">27 ans</option>
+                                          <option value="28">28 ans</option>
+                                          <option value="29">29 ans</option>
+                                          <option value="30">30 ans</option>
+                                          <option value="31">31 ans</option>
+                                          <option value="32">32 ans</option>
+                                          <option value="33">33 ans</option>
+                                          <option value="34">34 ans</option>
+                                          <option value="35">35 ans</option>
+                                          <option value="36">36 ans</option>
+                                          <option value="37">37 ans</option>
+                                          <option value="38">38 ans</option>
+                                          <option value="39">39 ans</option>
+                                          <option value="40">40 ans</option>
+                                          <option value="41">41 ans</option>
+                                          <option value="42">42 ans</option>
+                                          <option value="43">43 ans</option>
+                                          <option value="44">44 ans</option>
+                                          <option value="45">45 ans</option>
+                                          <option value="46">46 ans</option>
+                                          <option value="47">47 ans</option>
+                                          <option value="48">48 ans</option>
+                                          <option value="49">49 ans</option>
+                                          <option value="50">50 ans</option>
+                                          <option value="51">51 ans</option>
+                                          <option value="52">52 ans</option>
+                                          <option value="53">53 ans</option>
+                                          <option value="54">54 ans</option>
+                                          <option value="55">55 ans</option>
+                                          <option value="56">56 ans</option>
+                                          <option value="57">57 ans</option>
+                                          <option value="58">58 ans</option>
+                                          <option value="59">59 ans</option>
+                                          <option value="60">60 ans</option>
+                                          <option value="61">61 ans</option>
+                                          <option value="62">62 ans</option>
+                                          <option value="63">63 ans</option>
+                                          <option value="64">64 ans</option>
+                                          <option value="65">65 ans</option>
+                                          <option value="66">66 ans</option>
+                                          <option value="67">67 ans</option>
+                                          <option value="68">68 ans</option>
+                                          <option value="69">69 ans</option>
+                                          <option value="70">70 ans</option>
+                                          <option value="71">71 ans</option>
+                                          <option value="72">72 ans</option>
+                                          <option value="73">73 ans</option>
+                                          <option value="74">74 ans</option>
+                                          <option value="75">75 ans</option>
+                                          <option value="76">76 ans</option>
+                                          <option value="77">77 ans</option>
+                                          <option value="78">78 ans</option>
+                                          <option value="79">79 ans</option>
+                                          <option value="80">80 ans</option>
+                                          <option value="81">81 ans</option>
+                                          <option value="82">82 ans</option>
+                                          <option value="83">83 ans</option>
+                                          <option value="84">84 ans</option>
+                                          <option value="85">85 ans</option>
+                                          <option value="86">86 ans</option>
+                                          <option value="87">87 ans</option>
+                                          <option value="88">88 ans</option>
+                                          <option value="89">89 ans</option>
+                                          <option value="90">90 ans</option>
+                                        </select>
+                                  </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Téléphone</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez le n° de téléphone" value="<%= user.phone %>" name="phone">
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Mot de passe</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez un mot de passe" name="password">
+                      </div>                  
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/footer')-%>

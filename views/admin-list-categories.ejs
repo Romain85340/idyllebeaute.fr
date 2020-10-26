@@ -1,0 +1,87 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container list-activities-admin">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h1>Liste des categories</h1>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="search" >
+                                <input class="form-control col-md-12" id="categorySearch" type="text" onkeyup="searchCategory()"
+                                placeholder="Recherche une categorie" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/admin/create">Ajoutez une categorie</a>
+                        </div>
+                    </div>
+
+                    <!--Message Flash-->
+                    <% if(success.length > 0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <%= success %>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                    <% } %>
+
+
+                  <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Nom de la categorie</th>
+                                <th scope="col">Modification</th>
+                                <th scope="col">Supression</th>
+                              </tr>
+                            </thead>
+                            <tbody id="category">
+                            <% categories.forEach(function(entry) {%>
+                              <tr>
+                                <td class="admin-list-categories-img"><img src="<%= entry.image%>" alt=""></td>
+                                <td><%= entry.name%></td>
+                                <td><button type="button" class="btn btn-secondary"><a href="/admin/edit/category/<%= entry.id%>" class="edit-btn-admin">Modifier</a></button></td>
+                                <form method="POST" action="/admin/delete/category/<%=entry.id%>?_method=DELETE">
+                                    <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                                </form>
+                              </tr>
+                            <%});%>
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchCategory() {
+        // Variables
+        const input = document.getElementById('categorySearch');
+        const filter = input.value.toUpperCase();
+        const tbody = document.getElementById('category');
+        const tr = tbody.getElementsByTagName('tr');
+        // Filter name and delete tr where no match
+        for (i = 0; i < tr.length; i++) {
+            const a = tr[i].getElementsByTagName("td")[1];
+            const txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+<%- include('./partials/footer')-%>

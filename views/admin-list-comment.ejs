@@ -1,0 +1,69 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 justify-content-center" style=" margin-top: 30px;">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Liste des commentaires</h1>
+              </div>
+            </div>
+
+            <!--Message Flash-->
+            <% if(success.length > 0) { %>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% } %>
+            <% if(error.length > 0) { %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% } %>
+          
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Commentaire</th>
+                    <th scope="col">Afficher/Masquer</th>
+                    <th scope="col">Suppression</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% comments.forEach(function(entry) {%>
+                  <tr>
+                    <td><%= entry.firstname%></td>
+                    <td><%= entry.lastname%></td>
+                    <td><%= entry.commentary%></td>
+                    <% if (entry.status === 0) { %>
+                      <form method="POST" action="/admin/status/comment/<%= entry.id%>?_method=PUT">
+                        <td><button type="submit" class="btn btn-warning">Afficher</button></td>
+                      </form>
+                    <% } else { %>
+                        <form method="POST" action="/admin/status/comment/<%= entry.id%>?_method=PUT">
+                          <td><button type="submit" class="btn btn-success">Masquer</button></td>
+                        </form>
+                    <% } %>
+                    <form method="POST" action="/admin/delete/comment/<%= entry.id%>?_method=DELETE">
+                        <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                    </form>
+                  </tr>
+                <%});%>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<%- include('./partials/footer')-%>

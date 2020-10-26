@@ -1,0 +1,35 @@
+<!---Header--->
+        
+<input type="checkbox" id="check" checked>    
+<header class="header-sidebar">
+    <label for="check">
+        <i class="fas fa-align-justify" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+        <% if(userSession.userID > 0) { %>
+        <h1><%= userSession.userNAME %> <span><%= userSession.userLASTNAME %></span></h1>
+        <% } %>
+    </div>
+</header>
+
+<!---Sidebar--->
+
+<div class="sidebar">
+    <!-- <a class="btn dropdown-toggle btn-test"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-align-justify"></i><span>Dashboard</span> 
+    </a> -->
+
+    <!-- <div class="dropdown-menu btn-test2" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item btn-test3" href="#">Test1</a>
+        <a class="dropdown-item btn-test3" href="#">Test2</a>
+        <a class="dropdown-item btn-test3" href="#">Test3</a>
+    </div> -->
+    <a href="/"><i class="fas fa-door-open"></i><span>Site web</span></a>
+    <a href="/admin"><i class="fas fa-chart-line"></i></i><span>Acceuil admin</span></a>
+    <a href="/admin/create"><i class="far fa-plus-square"></i><span>Crée</span></a>
+    <a href="/admin/list/users"><i class="fas fa-users"></i><span>Utilisateurs</span></a>
+    <a href="/admin/list/comments"><i class="fas fa-comments"></i><span>Commentaires</span></a>
+    <a href="/admin/list/activities"><i class="fab fa-buffer"></i><span>Activitées</span></a>
+    <a href="/admin/list/categories"><i class="fab fa-buffer"></i><span>Categories</span></a>
+    <a href="/auth/logout" class="admin-btn-logout"><i class="fas fa-sign-out-alt"></i><span>Deconnexion</span></a>
+</div>

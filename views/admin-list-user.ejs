@@ -1,0 +1,70 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+    <div class="container list-user-admin">
+      <div class="row">
+          <div class="col-md-12">
+              <h1>Liste des utilisateurs</h1>
+          </div>
+      </div>
+
+      <!--Message Flash-->
+      <% if(success.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= success %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% } %>
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Age</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Conversation</th>
+                <th scope="col">Modification</th>
+                <th scope="col">Bloqué/Débloqué</th>
+                <th scope="col">Suppression</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% users.forEach(function(entry) {%>
+              <tr>
+                <td><%= entry.firstname%></td>
+                <td><%= entry.lastname%></td>
+                <td><%= entry.age%></td>
+                <td><%= entry.email%></td>
+                <td><%= entry.phone%></td>
+                <td><button type="button" class="btn btn-primary"><a href="/admin/message/<%= entry.id%>" class="edit-btn-admin">Conversation</a></button></td>
+                <td><button type="button" class="btn btn-secondary"><a href="/admin/edit/user/<%= entry.id%>" class="edit-btn-admin">Modifier</a></button></td>
+                <% if (entry.status === 0) { %>
+                <form method="POST" action="/admin/block/user/<%= entry.id%>?_method=PUT">
+                  <td><button type="submit" class="btn btn-success">Débloqué</button></td>
+                </form>
+                <% } else { %>
+                  <form method="POST" action="/admin/block/user/<%= entry.id%>?_method=PUT">
+                    <td><button type="submit" class="btn btn-warning">Bloqué</button></td>
+                  </form>
+                <% } %>
+                <form method="POST" action="/admin/delete/user/<%=entry.id%>?_method=DELETE">
+                    <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                </form>
+              </tr>
+            <%});%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+<%- include('./partials/footer')-%>

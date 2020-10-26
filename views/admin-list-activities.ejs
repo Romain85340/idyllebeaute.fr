@@ -1,0 +1,98 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+<div class="content-admin-home">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container list-activities-admin">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h1>Liste des activités</h1>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="search" >
+                                <input class="form-control col-md-12" id="activitySearch" type="text" onkeyup="searchActivity()"
+                                placeholder="Recherche par activité" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/admin/create">Ajoutez une activité</a>
+                        </div>
+                    </div>
+
+
+                    <!--Message Flash-->
+                    <% if(success.length > 0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <%= success %>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                    <% } %>
+
+
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Activité</th>
+                                    <th scope="col">Categorie</th>
+                                    <th scope="col">Prix</th>
+                                    <th scope="col">Temps (min)</th>
+                                    <th scope="col">Texte</th>
+                                    <th scope="col">Modification</th>
+                                    <th scope="col">Suppression</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="activity">
+                                <% activities.forEach(function(entry) {%>
+                                  <tr>
+                                    <td class="admin-list-activity-img"><img src="<%= entry.activity_image%>" alt=""></td>
+                                    <td><%= entry.activity_name%></td>
+                                    <td><%= entry.category_name%></td>
+                                    <td><%= entry.activity_price%> €</td>
+                                    <td><%= entry.activity_time%> min</td>
+                                    <td><%= entry.activity_text%></td>
+                                    <td><button type="button" class="btn btn-secondary"><a href="/admin/edit/activity/<%= entry.activity_id%>" class="edit-btn-admin">Modifier</a></button></td>
+                                    <form method="POST" action="/admin/delete/activity/<%=entry.activity_id%>?_method=DELETE">
+                                        <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                                    </form>
+                                  </tr>
+                                <%});%>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchActivity() {
+        // Variables
+        const input = document.getElementById('activitySearch');
+        const filter = input.value.toUpperCase();
+        const tbody = document.getElementById('activity');
+        const tr = tbody.getElementsByTagName('tr');
+        // Filter name and delete tr where no match
+        for (i = 0; i < tr.length; i++) {
+            const a = tr[i].getElementsByTagName("td")[1];
+            const txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+<%- include('./partials/footer')-%>

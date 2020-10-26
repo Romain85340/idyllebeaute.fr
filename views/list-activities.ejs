@@ -1,0 +1,48 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar')-%>
+
+
+<main class="all-activities-list">
+    <!--List of activities-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 activities-list">
+                <% category.forEach(function(entry) {%>
+                <div class="row">
+                    <div class="col-md-12 title-activities">
+                        <h1><span><%= entry.name %> </span></h1>
+                    </div>
+                </div>
+                <div class="row content-activities-list">
+                    <div class="col-md-12 img-activity">
+                        <img src="<%= entry.image%>" alt="">
+                    </div>
+                    <%});%>
+                    <div class="col-md-12 content-activity">
+                        <table class="table activities">
+                            <tbody>
+                                <% activities.forEach(function(entry) {%>
+                                <tr>
+                                    <td scope="col name-activity"><p><%= entry.activity_name%></p></td>
+                                    <td scope="col price-activity"><span><%= entry.activity_price%> €</span></td>
+                                    <td scope="col btn-activity"><span class="btn"><a href="/activities/<%= entry.activity_id%>">Plus d'infos</a></span></td>
+                                </tr>
+                                <%});%>
+                            </tbody>
+                          </table>                                                
+                    </div>
+                    <div class="pagination">
+                        <% pagination.forEach(function(entry) {%>
+                        <ul>
+                            <li><a href="/activities/list/<%= entry.id%>"><%= entry.name%></a></li>
+                        </ul>
+                        <%});%>
+                    </div>
+                </div>                  
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('./partials/footer-idylle') %> 
+<%- include('./partials/footer') -%>

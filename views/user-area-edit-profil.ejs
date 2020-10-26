@@ -1,0 +1,180 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar')-%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Modifier votre profil</h1>
+        </div>
+    </div>
+
+    <!---Message Flash-->
+    <% if(error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% } %>
+    <% if(success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% } %> 
+
+    <form action="/user-area/edit-profil/<%= user.id %>?_method=PUT" method="POST" class="edit-profil-user">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Prenom</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modifier votre prénom" value="<%= user.firstname %>" name="firstname">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Nom</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modifier votre nom" value="<%= user.lastname %>" name="lastname">
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Email</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Modifier votre email" value="<%= user.email %>" name="email">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Téléphone</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Modifier votre n° de téléphone" value="<%= user.phone %>" name="phone">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Age</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="age">
+                        <option value="">Selectionner</option>
+                          <option value="14">14 ans</option>
+                          <option value="15">15 ans</option>
+                          <option value="16">16 ans</option>
+                          <option value="17">17 ans</option>
+                          <option value="18">18 ans</option>
+                          <option value="19">19 ans</option>
+                          <option value="20">20 ans</option>
+                          <option value="21">21 ans</option>
+                          <option value="22">22 ans</option>
+                          <option value="23">23 ans</option>
+                          <option value="24">24 ans</option>
+                          <option value="25">25 ans</option>
+                          <option value="26">26 ans</option>
+                          <option value="27">27 ans</option>
+                          <option value="28">28 ans</option>
+                          <option value="29">29 ans</option>
+                          <option value="30">30 ans</option>
+                          <option value="31">31 ans</option>
+                          <option value="32">32 ans</option>
+                          <option value="33">33 ans</option>
+                          <option value="34">34 ans</option>
+                          <option value="35">35 ans</option>
+                          <option value="36">36 ans</option>
+                          <option value="37">37 ans</option>
+                          <option value="38">38 ans</option>
+                          <option value="39">39 ans</option>
+                          <option value="40">40 ans</option>
+                          <option value="41">41 ans</option>
+                          <option value="42">42 ans</option>
+                          <option value="43">43 ans</option>
+                          <option value="44">44 ans</option>
+                          <option value="45">45 ans</option>
+                          <option value="46">46 ans</option>
+                          <option value="47">47 ans</option>
+                          <option value="48">48 ans</option>
+                          <option value="49">49 ans</option>
+                          <option value="50">50 ans</option>
+                          <option value="51">51 ans</option>
+                          <option value="52">52 ans</option>
+                          <option value="53">53 ans</option>
+                          <option value="54">54 ans</option>
+                          <option value="55">55 ans</option>
+                          <option value="56">56 ans</option>
+                          <option value="57">57 ans</option>
+                          <option value="58">58 ans</option>
+                          <option value="59">59 ans</option>
+                          <option value="60">60 ans</option>
+                          <option value="61">61 ans</option>
+                          <option value="62">62 ans</option>
+                          <option value="63">63 ans</option>
+                          <option value="64">64 ans</option>
+                          <option value="65">65 ans</option>
+                          <option value="66">66 ans</option>
+                          <option value="67">67 ans</option>
+                          <option value="68">68 ans</option>
+                          <option value="69">69 ans</option>
+                          <option value="70">70 ans</option>
+                          <option value="71">71 ans</option>
+                          <option value="72">72 ans</option>
+                          <option value="73">73 ans</option>
+                          <option value="74">74 ans</option>
+                          <option value="75">75 ans</option>
+                          <option value="76">76 ans</option>
+                          <option value="77">77 ans</option>
+                          <option value="78">78 ans</option>
+                          <option value="79">79 ans</option>
+                          <option value="80">80 ans</option>
+                          <option value="81">81 ans</option>
+                          <option value="82">82 ans</option>
+                          <option value="83">83 ans</option>
+                          <option value="84">84 ans</option>
+                          <option value="85">85 ans</option>
+                          <option value="86">86 ans</option>
+                          <option value="87">87 ans</option>
+                          <option value="88">88 ans</option>
+                          <option value="89">89 ans</option>
+                          <option value="90">90 ans</option>
+                        </select>
+                  </div>
+            </div>
+        </div>
+        <div class="btn-form-edit-user">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Modifier votre mot de passe
+            </button>
+            <!-- <a href="">Modifier votre mot de passe</a> -->
+            <button type="submit" class="btn btn-primary">Modifier profil</button>
+        </div>
+      </form>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title" id="exampleModalLabel">Voulez vous changer votre mot de passe</h1>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="/user-area/edit-profil-password/<%= userSession.userID %>?_method=PUT" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Entrez votre mot de passe</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirmez votre mot de passe</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password2">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+</div>
+
+<%- include('./partials/footer')-%>

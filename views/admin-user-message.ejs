@@ -1,0 +1,38 @@
+<%- include('./partials/header')-%>
+<%- include('./partials/navbar-admin')-%>
+
+
+
+
+
+<div class="content-admin-home">
+    <div class="container private-message-admin">
+
+                <h1><%= user.firstname %> <%= user.lastname %></h1>
+
+        <form action="/admin/message/<%= user.id%>" method="POST">
+            <% allMessage.forEach(function(entry) {%>
+            <div class="private-message-body">
+                <% if (entry.receive_id === 10) { %>
+                <div class="message-receive">
+                    <p><%= entry.send_firstname%> <%= entry.send_lastname%> : <%= entry.content%></p>
+                </div>
+                <% } else {  %>
+                <div class="message-send">
+                    <p><%= entry.send_firstname%> <%= entry.send_lastname%> : <%= entry.content%></p>
+                </div>
+                <% } %>
+            </div>
+            <%});%>
+            <div class="input-group mb-3" style="padding: 10px;">
+                <input type="text" class="form-control" placeholder="Envoyer un message" aria-label="Recipient's username" aria-describedby="button-addon2" name="content">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="background: #007bff; color: white;">Envoyer</button>
+                </div>
+              </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include('./partials/footer')-%>
